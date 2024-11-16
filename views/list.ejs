@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to bottom right, #f0f4f8, #d9e2ec);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #2980b9;
+            margin: 20px 0;
+        }
+        p {
+            font-size: 1.2em;
+            color: #34495e;
+            text-align: center;
+        }
+        h2 {
+            color: #2980b9;
+            text-align: center;
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        li {
+            background: #ffffff;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        a {
+            text-decoration: none;
+            color: #2980b9;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+            margin: 0 10px; /* Adjust margin for spacing */
+        }
+        .button:hover {
+            background-color: #219653;
+        }
+        .search-form {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .search-form input[type="text"] {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+        .search-form input[type="text"]:focus {
+            border-color: #2980b9;
+            outline: none;
+        }
+        .search-form button {
+            padding: 12px 20px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px; /* Spacing between input and button */
+            transition: background-color 0.3s;
+        }
+        .search-form button:hover {
+            background-color: #21618c;
+        }
+    </style>
+</head>
+<body>
+    <h1>欢迎, <%= user.name %></h1>
+    <hr/>
+    <p>您通过 <b><%= user.type %></b> 登录，用户 ID 是 <%= user.id %></p>
+    <h2>Bookings (<%= nBookings %>)</h2>
+    <ul>
+        <% for (var b of bookings) { %>
+            <li>
+                Booking ID: <a href="/details?_id=<%= b._id %>"><%= b.bookingid %></a>
+            </li>
+        <% } %>
+    </ul>
+    
+    <div class="button-container">
+        <a href='/create' class="button">创建新预订</a>
+    </div>
+    
+    <div class="search-form">
+        <form action="/search" method="GET">
+            <input type="text" name="bookingid" placeholder="输入 Booking ID" required>
+            <button type="submit">搜索预订</button>
+        </form>
+    </div>
+
+    <p><a href='/profile'>查看和编辑个人资料</a></p>
+    <p><a href='/logout'>注销</a></p>
+</body>
+</html>

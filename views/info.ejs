@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <h1>Welcome, <%= user.name || 'Guest' %></h1>
+        <hr/>
+        <% if (user.type) { %>
+            <p>You logged in through <b><%= user.type %></b>, user ID is <%= user.id %></p>
+        <% } else { %>
+            <p>You are not logged in.</p>
+        <% } %>
+        <b><%= message %></b>
+    </body>
+</html>
